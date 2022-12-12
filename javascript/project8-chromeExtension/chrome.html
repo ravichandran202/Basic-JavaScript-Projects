@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Extension</title>
+    <style>
+    body{
+        box-sizing: border-box;
+        margin:0;
+        padding:0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container{
+        width: 95%;
+        max-width: 700px;
+        padding: 10px;
+        margin:0 auto;
+    }
+
+    input{
+        width: 95%;
+        height: 35px;
+        font-size: 1rem;
+        padding-left :10px;
+    }
+
+    #input-el:hover{
+        background-color: rgba(0, 64, 255, 0.2);
+        border-color: green;
+    }
+
+    button{
+        margin-top: 10px;
+        width: 150px;
+        height: 3rem;
+        background-color: green;
+        color:aliceblue;
+        font-size: 1rem;
+        font-weight: bolder;
+        border-radius: 5px;
+    }
+
+    #ul-el li a{
+        font-size: large;
+        color: green;
+    }
+
+    li{
+        margin-top: 5px;
+    }
+
+    ul{
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <input type="text" id="input-el"><br>
+    <button type="button" id="input-btn">SAVE INPUT</button>
+    <ul id="ul-el"></ul>
+    <script src="chrome.js"></script>
+    </div>
+</body>
+</html>

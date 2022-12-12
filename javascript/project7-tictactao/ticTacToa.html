@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacTae</title>
+    
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body{
+            background-color: rgb(6, 159, 105);
+            font-size: 40px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        p{
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .container{
+            margin-top: 50px;
+            text-align: center;
+            height: 500px; 
+            max-width: 500px;
+        }
+
+        div{
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .table{
+            margin-top: 4rem;
+            border-collapse: collapse;
+        }
+
+        .row{
+            display: flex;
+            
+        }
+
+        .data{
+            border: 5px solid rgb(0, 0, 0);
+            text-align: center;
+            height: 120px;
+        }
+
+        h3{
+            font-size: 80px;
+        }
+
+        #data1,#data2,#data3{
+            border-top:none;
+        }
+
+        #data4,#data1,#data7{
+            border-left:none;
+        }
+
+        #data7,#data8,#data9{
+            border-bottom:none;
+        }
+
+        #data3,#data6,#data9{
+            border-right:none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tic Tac Toe</h2>
+        <p id="turn"></p>
+        <div class="table">
+            <div class="row">
+                <div class="data" id="data1" onclick="data1()"><h3 id="d1"></h3></div>
+                <div class="data" id="data2" onclick="data2()"><h3 id="d2"></h3></div>
+                <div class="data" id="data3" onclick="data3()"><h3 id="d3"></h3></div>
+            </div>
+            <div class="row">
+                <div class="data" id="data4" onclick="data4()"><h3 id="d4"></h3></div>
+                <div class="data" id="data5" onclick="data5()"><h3 id="d5"></h3></div>
+                <div class="data" id="data6" onclick="data6()"><h3 id="d6"></h3></div>
+            </div>
+            <div class="row">
+                <div class="data" id="data7" onclick="data7()"><h3 id="d7"></h3></div>
+                <div class="data" id="data8" onclick="data8()"><h3 id="d8"></h3></div>
+                <div class="data" id="data9" onclick="data9()"><h3 id="d9"></h3></div>
+            </div>
+        </div>
+        <h4 id="winner"></h4>
+    </div>
+    <script src="ticTacTao.js"></script>
+</body>
+</html>

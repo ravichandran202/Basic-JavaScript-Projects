@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0;
+            font-family:"poppins",sans-serif ;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        body{
+            background-color: rgb(15, 15, 15);
+        }
+
+        .container{
+            border: 2px solid orange;
+            width: 85%;
+            max-width: 500px;
+            margin:1rem auto;
+            height: 700px;
+            border-radius: 15px;
+            background-color: rgb(0, 0, 0);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        button{
+            color: aliceblue;
+            padding: 4.5%;
+            margin: 0;
+            width: 85px;
+            margin-bottom: 10px;
+            margin-left: 15px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgb(0, 0, 0);
+            box-shadow: 2px 4px 10px 3px rgba(255, 229, 229, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.10);
+        }
+
+        .button{
+            margin-top: 50px;
+        }
+
+        button:hover{
+            background-color: rgb(25,25,25);
+            color: aliceblue;
+            font-weight: 400;
+        }
+
+        h3{
+            color: aliceblue;
+            text-align: right;
+            margin:1.5rem 10px;
+            border-bottom: 2px solid black;
+        }
+
+        .color{
+            color: #000;
+            font-weight: 600;
+            background-color: orange;
+        }
+
+        .container div{
+            height: 15%;
+        }
+
+        .small{
+            padding-left: .7rem;
+        }
+
+        .large{
+            width: 39%;
+            border-radius: 25px;
+        }
+
+        h3{
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        @media screen and (max-width:600px) {
+        button {
+            padding: 2%;
+            margin: 0;
+            width: 60px;
+            margin-bottom: 0px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 50%;
+        }
+
+        .small{
+            padding-left: .1rem;
+        }
+
+        .container div{
+            height: 10%;
+        }
+
+        .container{
+            min-width:300px
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 id="dis-el">0</h3>
+        <div class="button">
+           <button class="color small" onclick="AC()">AC</button>
+           <button class="color" onclick="X()">X</button>
+           <button class="color" onclick="Percent()">%</button>
+           <button class="color" onclick="division()">/</button>
+        </div>
+        <div>
+            <button onclick="number7()">7</button>
+            <button onclick="number8()">8</button>
+            <button onclick="number9()">9</button>
+            <button class="color" onclick="multiplication()">*</button>
+        </div>
+        <div>
+            <button onclick="number4()">4</button>
+            <button onclick="number5()">5</button>
+            <button onclick="number6()">6</button>
+            <button class="color" onclick="subtraction()">-</button>
+        </div>
+        <div>
+            <button onclick="number1()">1</button>
+            <button onclick="number2()">2</button>
+            <button onclick="number3()">3</button>
+            <button class="color" onclick="addition()">+</button>
+        </div>
+        <div>
+            <button  onclick="number0()">0</button>
+            <button onclick="decimal()">.</button>
+            <button class="color large" onclick="equal()">=</button>
+        </div>
+    </div>
+    <script src="calculator.js"></script>
+</body>
+</html>

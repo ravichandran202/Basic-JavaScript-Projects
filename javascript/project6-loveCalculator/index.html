@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0;
+            background-color: pink;
+        }
+
+        div{
+            background-color: rgb(255, 109, 133);
+            width: 85%;
+            margin: 0 auto;
+            margin-top: 2rem;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        label{
+            font-size: 1.5rem;
+        }
+
+        input{
+            padding: 0.3rem;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        button{
+            background-color: pink;
+            padding: 1rem;
+            border-radius: 5px;
+            width: 50%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>LOVE CALCULATOR</h1>
+        <form action="#" method="post">
+            <label for="yname">Your Name : <input type="text" id="yname" name="yname"></label><br><br>
+            <label for="cname">Crush Name : <input type="text" id="cname" name="cname"></label><br><br>
+        </form>
+        <button onclick="love()">Submit</button>
+        <h3 id="per-el"></h3>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
