@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+    
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+
+    body{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+        background-color: rgb(212, 233, 250);
+        margin: 5%;
+        
+    }
+
+    .container{
+        padding: 3%;
+        height: 80vh;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
+
+    label{
+        font-size: 1.2rem;
+        opacity: 0.7;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+        display: inline-block;
+    }
+
+    .remove-padding-margin{
+        padding-top: 0%;
+        margin-top: 0%;
+    }
+
+    .container-input{
+        padding: 1rem;
+        max-width: 50%;
+    }
+
+    
+
+    .container-input  button{
+        font-size: 1.5rem;
+        padding: 1rem 3rem;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(53, 80, 111);
+        width: 30%;
+        color: rgb(229, 228, 228);  
+    }
+
+    .buttons{
+       display: flex;
+       justify-content: space-around;
+       gap: 1rem;
+       flex-wrap: wrap;
+    }
+
+    input{
+        padding: 1rem;
+        border: .5px solid rgb(164, 161, 161);
+        background-color: rgb(240, 248, 255,.5);
+        width: 100%;
+
+        height: 2rem;
+        text-align: center;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        padding: 1.7rem;
+        border:1px solid rgb(164, 161, 161);
+    }
+ 
+    #tip-input{
+        width: 30%;
+        height: 2rem;
+        text-align: center;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        padding: 1.7rem;
+        border:1px solid rgb(164, 161, 161);
+    }
+
+    button:hover{
+        background-color: rgb(66, 105, 150);
+    }
+
+
+    /*Right Container*/
+    .container-output{
+        background-color: rgb(53, 80, 111);
+        width: 90%;
+        padding: 3rem;
+        height: 100%;
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .container-output button{
+        position: absolute;
+        color: rgb(53, 80, 111);
+        font-weight: 600;
+        background-color: rgb(99, 149, 206);
+        border: none;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        margin-bottom:2rem;
+        padding: 1rem;
+        bottom: 0;
+        width: 85%;
+    }
+
+    .container-output button:hover{
+        background-color: rgb(143, 173, 207);
+    }
+
+    .container-output .output{
+        margin: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .text{
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .text h3{
+        font-weight: 500;
+        font-size: 2rem;
+        color: rgb(166, 199, 237);
+    }
+
+    .text p{
+        position: absolute;
+        left:0;
+        color: rgb(143, 173, 207);
+    }
+
+    .answer h2{
+        margin-top: -1rem;
+        font-weight: 500;
+        font-size: 3.5rem;
+        color: rgb(99, 149, 206);
+    }
+
+    @media screen and (max-width:1200px) {
+       body{
+        overflow-y: auto;
+        margin:2%;
+       }
+
+       .container{
+        padding: 5% 2%;
+        height: auto;
+        background-color: white;
+        border-radius: 15px;
+        display: block;
+    }
+
+    .container-input{
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .container-input  button{
+        font-size: 1rem;
+        padding: 1rem 2rem;
+    }
+
+    .container-output{
+        width: 100%;
+        padding: 1rem;
+        height: 20rem;
+        border-radius: 15px;
+        
+    }
+
+    .container-output button{
+        font-weight: 600;  
+        font-size: 1rem;
+        margin-top:1rem;
+        margin-bottom:1rem;
+        bottom: 0;
+        width: 93%;
+    }
+
+    .text h3{
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+    .answer h2{
+        margin-top: -1rem;
+        font-weight: 500;
+        font-size: 2.5rem;
+        color: rgb(99, 149, 206);
+    }
+
+    }
+
+    @media screen and (max-width:600px){
+     body{
+       padding: 0;
+       margin: 0; 
+     }
+
+     .container{
+        padding: 5% 1%;
+    }
+
+    .container-input  button{
+        font-size: 1rem;
+        width: 45%;
+        padding: 1rem 1rem;
+    }
+
+    input{
+        text-align: center;
+        font-size: 1rem;
+        padding: 1.3rem;
+    }
+
+    #tip-input{
+        width: 45%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .container-output{
+        width: 95%;
+        margin: 0 auto;
+        padding: .5rem;
+        height: 20rem;
+        border-radius: 15px;
+        
+    }
+
+    .container-output button{
+        width: 95%;
+    }
+
+    .text h3{
+        font-size: 1.3rem;
+    }
+
+    .answer h2{
+        font-weight: 500;
+        font-size: 2.0rem;
+    }
+    }
+
+ 
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-input">
+           <label for="totalbill" class="remove-padding-margin">Bill</label><br><input type="text" id="totalbill" name="totalbill" placeholder="Bill Amount">
+           <div class="percentage-section">
+            <label>Select Tip %</label>
+            <div class="buttons">
+                <button id="tip-5">5 %</button>
+                <button id="tip-10">10 %</button>
+                <button id="tip-15">15 %</button>
+                <button id="tip-25">25 %</button>
+                <button id="tip-50">50 %</button>
+                <input type="number" id="tip-input" value="20">
+            </div>
+           </div>
+           <label for="total-persons">Number of People</label><br><input type="text" name="total-persons" id="total-persons" placeholder="Total Peoples">
+        </div>
+        <div class="container-output">
+            <div class="output">
+                <div class="text">
+                   <h3>Tip Amount</h3>
+                   <p>/ person</p>
+                </div>
+                <div class="answer">
+                    <h2 id="tip-amt">₹0.00</h2>
+                </div>
+            </div>
+            <div class="output">
+                <div class="text">
+                    <h3>Total Amount</h3>
+                    <p>/ person</p> 
+                </div>
+                <div class="answer">
+                    <h2 id="total-amt">₹0.00</h2>
+                </div>
+            </div>
+            <button id="calculate">RESET</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
