@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        *{
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+        }
+
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /*Resume Builder*/
+
+        .container-body{
+            display: flex;
+            border: 3px solid black;
+            width: 98vw;
+            height: 100vh;
+        }
+
+
+        /*container-left*/
+
+        .container-left{
+          width: 39vw;
+          border-right: 2px solid black;
+          /* border-left: 2px solid black;
+          border-bottom: 2px solid black; */
+
+        }
+
+        .container-left .img-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-left .img-container img{
+            border: 5px solid rgb(51, 111, 250);;
+            margin-top: 20px;
+            border-radius:50%;
+            width: 120px;
+            height: 120px;
+        }
+
+        /*container-left || Name/Role-Section*/
+        .container-left .name-container{
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .container-left .name-container h3{
+            color: rgb(51, 111, 250);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        .container-left .name-container p{
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        /*container-left || Contact-Section*/
+        .container-left .contact-container{
+            padding: 0px 10px;
+            margin-top: 30px;
+        }
+
+        .container-left .contact-container h3{
+            color: rgb(51, 111, 250);
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .container-left .contact-container p{
+            overflow-x: hidden;
+            width: 98%;
+            margin-top: 10px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        /*container-left || Skills-Section*/
+        .container-left .skill-container{
+            padding: 0px 10px;
+            margin-top: 30px;
+        }
+
+        .container-left .skill-container h3{
+            color: rgb(51, 111, 250);
+            font-size: 1.5rem;
+           text-align: center;
+        }
+
+        .container-left .skill-container p{
+            margin-top: 10px;
+            font-size: 1.2rem;
+           font-weight: 600;
+        }
+
+        .container-left .skill-container .skill .percentage{
+            height: 10px;
+            background-color: rgb(51, 111, 250);
+            border: 5px solid rgb(51, 111, 250);
+            border-radius: 15px;
+        }
+
+        .container-left .skill-container .skill #rskillper1{
+            width: 0%;
+        }
+        .container-left .skill-container .skill #rskillper2{
+            width: 0%;
+        }
+        .container-left .skill-container .skill #rskillper3{
+            width: 0%;
+        }
+        .container-left .skill-container .skill #rskillper4{
+            display: none;
+            width: 0%;
+        }
+        .container-left .skill-container .skill #rskillper5{
+            display: none;
+            width: 0%;
+        }
+
+
+        /*
+        *
+        *
+        *
+        *
+        */
+
+        /*container-right*/
+        .container-right{
+          padding: 0 10px;
+          padding-bottom: 30px;
+          width: 59vw;
+        }
+
+        .container-right .head{
+          color: rgb(51, 111, 250);
+          border: 1px solid rgb(51, 111, 250);
+          font-size: 1.5rem;
+          text-align: center;
+          margin-top: 30px;
+          margin-bottom: 5px;
+        }
+
+        .container-right .head:first-of-type{
+            margin-top: 10px;
+        }
+
+
+        /*container-right || Education-Section*/
+        .container-right .education>div{
+            margin-bottom: 15px;
+        }
+
+        .container-right .education .marks{
+            float: right;
+        }
+
+        .container-right #print-btn{
+            width: 100%;
+            background-color: rgb(51, 111, 250);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 35px;
+        }
+
+        /*
+        *******
+        *******
+        *******
+        *******
+        *******
+        *******
+        */
+
+        .forms-content{
+            color: rgb(176, 176, 179);
+            background-color: rgb(1, 1, 38);
+            width: 99vw;
+            border: 5px solid black;
+            position: absolute;
+            top: 0;
+            padding: 0 20px;
+            /* display: none; */
+        }
+
+        .forms-content .red-ch{
+            color: red;
+        }
+
+        .forms-content #head{
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .forms-content .headings{
+            text-transform: uppercase;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 10px;
+        }
+
+        .forms-content .forms form{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .forms-content .left-form {
+            padding: 2rem;
+            width: 90%;
+        }
+
+        .forms-content .right-form {
+            padding: 2rem;
+            width: 90%;
+        }
+        .forms-content label{
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .forms-content .forms input{
+            font-weight: 600;
+            color: rgb(176, 176, 179);
+            font-size: 1rem;
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            height: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color:  rgb(22, 22, 63);
+            border: 2px solid rgb(22, 22, 63);
+        }
+
+        .forms-content .forms #pic{
+            background-color: rgb(1, 1, 38);
+            border-color:rgb(1, 1, 38); ;
+        }
+
+        .submit{
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #submit-button{
+            padding: .5rem;
+            background-color: rgb(22, 22, 63);
+            color: rgb(176, 176, 179);
+            border: 2px solid rgb(176, 176, 179);
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            width: 30%;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        #submit-button:hover{
+            background-color: rgb(1, 1, 38);
+        }
+
+        .submit p:nth-child(2){
+            color: red;
+            font-size: .8rem;
+        }
+
+        /**************/
+
+        @media screen and ( max-width:600px) {
+            .container-body{
+            display: block;
+            border: 3px solid black;
+            width: 100vw;
+            padding: 0 15px;
+            height: auto;
+        }
+
+
+        /*container-left*/
+
+        .container-left{
+          width: auto;
+          border: none;
+
+        }
+
+        /*container-right*/
+        .container-right{
+          margin-top: 50px;
+          padding: 0 10px;
+          padding-bottom: 30px;
+          width: auto;
+        }
+
+        .container-right .head:nth-child(2){
+            margin-top: 30px;
+        }
+
+
+        /*Forms-Container*/
+        .forms-content .forms{
+            padding:0 2rem;
+        }
+
+        .forms-content .forms input{
+            margin-top: 5px;
+        }
+
+        .forms-content .forms form{
+            display: block;
+        }
+
+        .forms-content .left-form {
+            padding: .5rem;
+            width: 100%;
+        }
+
+        .forms-content .right-form {
+            padding: .5rem;
+            width: 100%;
+        }
+
+        #submit-button{
+            font-size: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-body">
+
+        <!--Left Container-->
+        <div class="container-left">
+            <div class="img-container">
+            <img id="profile-pic" src="profile.png" alt="profile-pic">
+            </div>
+
+            <!--Name and Role-->
+            <div class="name-container">
+                <h3 id="head-name">RAVICHANDRAN T S</h3>
+                <p id="rrole">DEVELOPER</p>
+            </div>
+
+            <!--Contact Info-->
+            <div class="contact-container">
+                <h3 class="head">CONTACT</h3>
+                    <p id="rphone">9113971166</p>
+                    <p id="remail">ravichandrants202@gmail.com</p>
+                    <p id="rwebsite">ravizzz.000webhostapp.com/</p>
+                    <p id="rlinkedin">ravichandran-t-s-551080215</p>
+                    <p id="rgithub">github.com/ravichandran202</p>
+            </div>
+
+            <!--Skills-->
+            <div class="skill-container">
+                <h3 class="head">SKILLS</h3>
+                <div class="skill">
+                    <p id="rskill1">HTML</p>
+                    <div class="percentage" id="rskillper1"></div>
+                </div>
+
+                <div class="skill">
+                    <p id="rskill2">CSS</p>
+                    <div class="percentage" id="rskillper2"></div>
+                </div>
+
+                <!-- <div class="skill3">
+                    <p id="rskill3">JavaScripts</p>
+                    <div class="percentage" id="rskillper3"></div>
+                </div> -->
+
+                <div class="skill">
+                    <p id="rskill4">Python</p>
+                    <div class="percentage" id="rskillper4"></div>
+                </div>
+
+                <div class="skill">
+                    <p id="rskill5">Web Development</p>
+                    <div class="percentage" id="rskillper5"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--
+            *
+            *
+            *
+            *
+            *
+        -->
+
+        <!--Right Container-->
+        <div class="container-right">
+            <div class="objective">
+                <h3 class="head">OBJECTIVE</h3>
+                <p id="robjective">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia magni deleniti repudiandae facilis amet beatae consequatur eligendi ex quae expedita soluta, fugiat error. Expedita blanditiis nihil et porro! Eaque, ex.</p>
+            </div>
+
+            <h3 class="head">EDUCATIONS</h3>
+            <div class="education">
+                <div id="school">
+                    <h3 id="rschool-name">Maharaja Institute of Technology</h3>
+                    <p id="rschool-stream">Computer Science and Eng.</p>
+                    <p id="rschool-marks">10/2020 - 2024 <span class="marks">9.0 CGPA</span></p>
+                </div>
+
+                <div id="pre-college">
+                    <h3 id="rpuc-name">Maharaja Institute of Technology</h3>
+                    <p id="rpuc-stream">Computer Science and Eng.</p>
+                    <p id="rpuc-marks">10/2020 - 2024 <span class="marks">9.0 CGPA</span></p>
+                </div>
+
+
+                <div id="college">
+                    <h3 id="rcollege-name">Maharaja Institute of Technology</h3>
+                    <p id="rcollege-stream">Computer Science and Eng.</p>
+                    <p id="rcollege-marks">10/2020 - 2024 <span class="marks">9.0 CGPA</span></p>
+                </div>
+            </div>
+            <h3 class="head">CERTIFICATES</h3>
+            <div class="certificates">
+                <p id="rcertificate1">1. Responsive Web Designing</p>
+                <p id="rcertificate2">2. Scientific Programming in Python</p>
+                <p id="rcertificate3">3. Responsive Web Designing</p>
+                <p id="rcertificate4">4. Data Structures in JavaScript</p>
+            </div>
+            <h3 class="head">LANGUAGES</h3>
+            <div class="language">
+                <p id="rlang1">1. English</p>
+                <p id="rlang2">2. Kannada</p>
+                <p id="rlang3">3. Hindi</p>
+                <p id="rlang4">4. Tamil</p>
+
+            </div>
+            <h3 class="head">INTRESTS</h3>
+            <div class="interests">
+                <p id="rinterest1">1. Coding</p>
+                <p id="rinterest2">2. Music</p>
+                <p id="rinterest3">3. Movies</p>
+                <p id="rinterest4">4. Cooking</p>
+            </div>
+            <button id="print-btn" onclick="print()">PRINT</button>
+        </div>
+    </div>
+
+
+    <div class="forms-content">
+        <h2 id="head">FILL THE FORMS</h2>
+       <div class="forms">
+           <form action="" method="post">
+            <div class="left-form">
+            <h3 class="headings">---Name and Role---</h3>
+            <!-- <label for="pic"><span class="red-ch">*</span> Picture : <br><input type="file" id="pic"></label> -->
+            <label for="name"><span class="red-ch">* </span>Name : <br><input type="text" id="name" placeholder="Ravichandran T S"></label>
+            <label for="role"><span class="red-ch">* </span>Role : <br><input type="text" id="role" placeholder="FullStack Developer"></label>
+
+            <h3 class="headings">---CONTACT---</h3>
+            <label for="phone"><span class="red-ch">* </span>Phone No. : <br><input type="text" id="phone" placeholder="911xxxxx66"></label>
+            <label for="email"><span class="red-ch">* </span>Email : <br><input type="text" id="email" placeholder="abcd@gmail.com"></label>
+            <label for="linkedin">LinkedIn : <br><input type="text" id="linkedin" placeholder="account link"></label>
+            <label for="website">Website Link : <br><input type="text" id="website" placeholder="account link"></label>
+            <label for="github">Github Link : <br><input type="text" id="github" placeholder="account link"></label>
+
+            <h3 class="headings">---SKILLS---</h3>
+            <label for="skill1"><span class="red-ch">* </span>Skill 1 : <input type="text" id="skill1" placeholder="HTML"><input type="text" id="skillper1" placeholder="Percentage e.g(90)"></label>
+            <label for="skill2"><span class="red-ch">* </span>Skill 2 : <input type="text" id="skill2" placeholder="HTML"><input type="text" id="skillper2" placeholder="Percentage e.g(90)"></label>
+            <!-- <label for="skill3"><span class="red-ch">* </span>Skill 3 : <input type="text" id="skill3" placeholder="HTML"><input type="text" id="skillper3" placeholder="Percentage e.g(90)"></label> -->
+            <label for="skill4">Skill 3 : <input type="text" id="skill4" placeholder="HTML"><input type="text" id="skillper4" placeholder="Percentage e.g(90)"></label>
+            <label for="skill5">Skill 4 : <input type="text" id="skill5" placeholder="HTML"><input type="text" id="skillper5" placeholder="Percentage e.g(90)"></label>
+
+            <h3 class="headings">---OBJECTIVE---</h3>
+            <label for="objective"><span class="red-ch">* </span>Objective / About Yourself : <input type="text" id="objective" placeholder="A Passionate Coder With ....."></label>
+
+            <h3 class="headings">---LANGUAGES---</h3>
+            <label for="lang1"><span class="red-ch">* </span>Language 1 : <input type="text" id="lang1" placeholder="Kannada"></label>
+            <label for="lang2"><span class="red-ch">* </span>Language 2 : <input type="text" id="lang2" placeholder="Kannada"></label>
+            <label for="lang3"><span class="red-ch">* </span>Language 3 : <input type="text" id="lang3" placeholder="Kannada"></label>
+            <label for="lang4">Language 4 : <input type="text" id="lang4" placeholder="Kannada"></label>
+            </div>
+
+
+            <div class="right-form">
+            <h3 class="headings">---EDUCATION---</h3>
+            <h3>Enter your School Details</h3>
+            <label for="school-name"><span class="red-ch">* </span>Name : <input type="text" id="school-name"></label>
+            <label for="school-stream"><span class="red-ch">* </span>Stream : <input type="text" id="school-stream"></label>
+            <label for="school-sdate"><span class="red-ch">* </span>Start Date : <input type="text" id="school-sdate"></label>
+            <label for="school-edate"><span class="red-ch">* </span>End Date : <input type="text" id="school-edate"></label>
+            <label for="school-marks"><span class="red-ch">* </span>Total Percentage : <input type="text" id="school-marks"></label>
+            <br>
+
+            <h3>Enter your PUC / Diploma Details</h3>
+            <label for="puc-name"><span class="red-ch">* </span>Name : <input type="text" id="puc-name"></label>
+            <label for="puc-stream"><span class="red-ch">* </span>Stream : <input type="text" id="puc-stream"></label>
+            <label for="puc-sdate"><span class="red-ch">* </span>Start Date : <input type="text" id="puc-sdate"></label>
+            <label for="puc-edate"><span class="red-ch">* </span>End Date : <input type="text" id="puc-edate"></label>
+            <label for="puc-marks"><span class="red-ch">* </span>Total Percentage : <input type="text" id="puc-marks"></label>
+            <br>
+
+            <h3>Enter your Undergraduate Details</h3>
+            <label for="college-name"><span class="red-ch">* </span>Name : <input type="text" id="college-name"></label>
+            <label for="college-stream"><span class="red-ch">* </span>Stream : <input type="text" id="college-stream"></label>
+            <label for="college-sdate"><span class="red-ch">* </span>Start Date : <input type="text" id="college-sdate"></label>
+            <label for="college-edate"><span class="red-ch">* </span>End Date : <input type="text" id="college-edate"></label>
+            <label for="college-marks"><span class="red-ch">* </span>Total CGPA : <input type="text" id="college-marks"></label>
+
+            <h3 class="headings">---CERTIFICATES---</h3>
+            <label for="certificate1"><span class="red-ch">* </span>Certificate 1 : <input type="text" id="certificate1" placeholder="web development"></label>
+            <label for="certificate2"><span class="red-ch">* </span>Certificate 2 : <input type="text" id="certificate2" placeholder="web development"></label>
+            <label for="certificate3">Certificate 3 : <input type="text" id="certificate3" placeholder="web development"></label>
+            <label for="certificate4">Certificate 4 : <input type="text" id="certificate4" placeholder="web development"></label>
+
+            <h3 class="headings">---INTRESTS---</h3>
+            <label for="interest1"><span class="red-ch">* </span>INTREST 1 : <input type="text" id="interest1" placeholder="coding, eating, sleeping"></label>
+            <label for="interest2"><span class="red-ch">* </span>INTREST 2 : <input type="text" id="interest2" placeholder="coding, eating, sleeping"></label>
+            <label for="interest3"><span class="red-ch">* </span>INTREST 3 : <input type="text" id="interest3" placeholder="coding, eating, sleeping"></label>
+            <label for="interest4"><span class="red-ch">* </span>INTREST 4 : <input type="text" id="interest4" placeholder="coding, eating, sleeping"></label>
+        </div>
+           </form>
+           <div class="submit">
+            <p><b>DISCLAIMER</b></p>
+            <p>Once you click submit button, all your data will be erased. verify your entered details before clicking submit button. if any feilds as left pending then its feild value considered as DEFAULT VALUE</p>
+            <button onclick="submitForm()" id="submit-button">SUBMIT</button>
+           </div>
+       </div>
+    </div>
+    <script>
+        //Form Elements
+        // const inPicEl = document.getElementById("pic")
+        const inNameEl = document.getElementById("name")
+        const inRoleEl = document.getElementById("role")
+        
+        const inPhoneEl = document.getElementById("phone")
+        const inEmailEl = document.getElementById("email")
+        const inWebsiteEl = document.getElementById("website")
+        const inLinkedinEl = document.getElementById("linkedin")
+        const inGithubEl = document.getElementById("github")
+        
+        const inSkill1El = document.getElementById("skill1")
+        const inSkill2El = document.getElementById("skill2")
+        // const inSkill3El = document.getElementById("skill3")
+        const inSkill4El = document.getElementById("skill4")
+        const inSkill5El = document.getElementById("skill5")
+    
+        const inSkillPercent1El = document.getElementById("skillper1")
+        const inSkillPercent2El = document.getElementById("skillper2")
+        // const inSkillPercent3El = document.getElementById("skillper3")
+        const inSkillPercent4El = document.getElementById("skillper4")
+        const inSkillPercent5El = document.getElementById("skillper5")
+       
+        const inObjectiveEl = document.getElementById("objective")
+        
+        const inLanguage1El = document.getElementById("lang1")
+        const inLanguage2El = document.getElementById("lang2")
+        const inLanguage3El = document.getElementById("lang3")
+        const inLanguage4El = document.getElementById("lang4")
+
+        const inSchoolNameEl = document.getElementById("school-name")
+        const inSchoolStreamEl = document.getElementById("school-stream")
+        const inSchoolStartDateEl = document.getElementById("school-sdate")
+        const inSchoolEndDateEl = document.getElementById("school-edate")
+        const inSchoolMarksEl = document.getElementById("school-marks")
+
+        const inPucNameEl = document.getElementById("puc-name")
+        const inPucStreamEl = document.getElementById("puc-stream")
+        const inPucStartDateEl = document.getElementById("puc-sdate")
+        const inPucEndDateEl = document.getElementById("puc-edate")
+        const inPucMarksEl = document.getElementById("puc-marks")
+
+        const inCollegeNameEl = document.getElementById("college-name")
+        const inCollegeStreamEl = document.getElementById("college-stream")
+        const inCollegeStartDateEl = document.getElementById("college-sdate")
+        const inCollegeEndDateEl = document.getElementById("college-edate")
+        const inCollegeMarksEl = document.getElementById("college-marks")
+
+        const inCertificate1El = document.getElementById("certificate1")
+        const inCertificate2El = document.getElementById("certificate2")
+        const inCertificate3El = document.getElementById("certificate3")
+        const inCertificate4El = document.getElementById("certificate4")
+        
+        const inInterest1El = document.getElementById("interest1")
+        const inInterest2El = document.getElementById("interest2")
+        const inInterest3El = document.getElementById("interest3")
+        const inInterest4El = document.getElementById("interest4")
+
+        //Resume Elements
+        // const PicEl = document.getElementById("profile-pic")
+        const NameEl = document.getElementById("head-name")
+        const RoleEl = document.getElementById("rrole")
+        
+        const PhoneEl = document.getElementById("rphone")
+        const EmailEl = document.getElementById("remail")
+        const WebsiteEl = document.getElementById("rwebsite")
+        const LinkedinEl = document.getElementById("rlinkedin")
+        const GithubEl = document.getElementById("rgithub")
+        
+        const Skill1El = document.getElementById("rskill1")
+        const Skill2El = document.getElementById("rskill2")
+        // const Skill3El = document.getElementById("rskill3")
+        const Skill4El = document.getElementById("rskill4")
+        const Skill5El = document.getElementById("rskill5")
+
+        const SkillPercent1El = document.getElementById("rskillper1")
+        const SkillPercent2El = document.getElementById("rskillper2")
+        // const SkillPercent3El = document.getElementById("rskillper3")
+        const SkillPercent4El = document.getElementById("rskillper4")
+        const SkillPercent5El = document.getElementById("rskillper5")
+
+        const ObjectiveEl = document.getElementById("robjective")
+        
+        const Language1El = document.getElementById("rlang1")
+        const Language2El = document.getElementById("rlang2")
+        const Language3El = document.getElementById("rlang3")
+        const Language4El = document.getElementById("rlang4")
+
+        const SchoolNameEl = document.getElementById("rschool-name")
+        const SchoolStreamEl = document.getElementById("rschool-stream")
+        const SchoolMarksEl = document.getElementById("rschool-marks")
+
+        const PucNameEl = document.getElementById("rpuc-name")
+        const PucStreamEl = document.getElementById("rpuc-stream")
+        const PucMarksEl = document.getElementById("rpuc-marks")
+
+        const CollegeNameEl = document.getElementById("rcollege-name")
+        const CollegeStreamEl = document.getElementById("rcollege-stream")
+        const CollegeMarksEl = document.getElementById("rcollege-marks")
+        
+        const Certificate1El = document.getElementById("rcertificate1")
+        const Certificate2El = document.getElementById("rcertificate2")
+        const Certificate3El = document.getElementById("rcertificate3")
+        const Certificate4El = document.getElementById("rcertificate4")
+
+        const Interest1El = document.getElementById("rinterest1")
+        const Interest2El = document.getElementById("rinterest2")
+        const Interest3El = document.getElementById("rinterest3")
+        const Interest4El = document.getElementById("rinterest4")
+
+        //DECLARED VARIABLES
+        let check = 0
+        let formEl = document.querySelector(".forms-content")
+        let printEl = document.getElementById("print-btn")
+
+        const checkMe = () => {
+        if(
+           inNameEl.value == '' ||
+           inRoleEl.value == '' ||
+           inPhoneEl.value == '' ||
+           inEmailEl.value == ''  ||
+           inSkill1El.value == '' ||
+           inSkill2El.value == '' ||
+        //    inSkill3El.value == '' ||
+           inSkillPercent1El.value == '' ||
+           inSkillPercent2El.value == '' ||
+        //    inSkillPercent3El.value == '' ||
+           inObjectiveEl.value == '' ||
+           inLanguage1El.value == '' ||
+           inLanguage2El.value == '' ||
+           inLanguage3El.value == '' ||
+           inSchoolNameEl.value == '' ||
+           inSchoolStreamEl.value == '' ||
+           inSchoolStartDateEl.value == '' ||
+           inSchoolEndDateEl.value == '' ||
+           inSchoolMarksEl.value == '' ||
+           inPucNameEl.value == '' ||
+           inPucStreamEl.value == '' ||
+           inPucStartDateEl.value == '' ||
+           inPucEndDateEl.value == '' ||
+           inPucMarksEl.value == '' ||
+           inCollegeNameEl.value == '' ||
+           inCollegeStreamEl.value == '' || 
+           inCollegeStartDateEl.value == '' || 
+           inCollegeEndDateEl.value == '' || 
+           inCollegeMarksEl.value == '' ||
+           inCertificate1El.value == '' ||
+           inCertificate2El.value == '' ||
+           inInterest1El.value == '' ||
+           inInterest2El.value == '' ||
+           inInterest3El.value == '' ||
+           inInterest4El.value == ''
+        )
+            return true
+        return false    
+        }
+
+        
+
+        const print = () => {
+            printEl.style.display = "none";
+            window.print()
+        }
+
+        const submitForm = () =>{
+            // PicEl.textContent =  inPicEl.value
+            NameEl.textContent = inNameEl.value
+            RoleEl.textContent = inRoleEl.value
+            PhoneEl.textContent =  inPhoneEl.value
+            EmailEl.textContent =  inEmailEl.value
+            WebsiteEl.textContent = inWebsiteEl.value
+            LinkedinEl.textContent = inLinkedinEl.value
+            GithubEl.textContent = inGithubEl.value
+            Skill1El.textContent =  "1. "+inSkill1El.value
+            Skill2El.textContent =  "2. "+inSkill2El.value
+            // Skill3El.textContent =  "3. "+inSkill3El.value
+
+            if(inSkill4El.value != '')
+                Skill4El.textContent =  "3. "+inSkill4El.value
+            else
+                Skill4El.textContent =  ''
+                
+            if(inSkill4El.value != '')
+                Skill5El.textContent =  "4. "+inSkill5El.value
+            else
+                Skill5El.textContent =  ''
+                
+            
+            SkillPercent1El.style.width =  inSkillPercent1El.value+"%"
+            SkillPercent2El.style.width =  inSkillPercent2El.value+"%"
+            // SkillPercent3El.style.width =  inSkillPercent3El.value+"100%"
+
+            if (inSkillPercent4El.value != ''){
+                SkillPercent4El.style.display = 'block'
+                SkillPercent4El.style.width =  inSkillPercent4El.value+"%"
+            }
+            else{
+                SkillPercent4El.style.display = 'none'
+                SkillPercent4El.style.width = "0%"
+            }
+            if (inSkillPercent5El.value != ''){
+                SkillPercent5El.style.display = 'block'
+                SkillPercent5El.style.width =  inSkillPercent5El.value+"%"
+            }
+            else{
+                SkillPercent5El.style.display = 'none'
+                SkillPercent5El.style.width = "0%"
+            }
+
+            ObjectiveEl.textContent =  inObjectiveEl.value
+
+            Language1El.textContent =  "1. "+inLanguage1El.value
+            Language2El.textContent =  "2. "+inLanguage2El.value
+            Language3El.textContent =  "3. "+inLanguage3El.value
+            if(inLanguage4El.value != '')
+                Language4El.textContent =  "4. "+inLanguage4El.value
+            else
+                Language4El.textContent =  ''
+            
+            SchoolNameEl.textContent =  inSchoolNameEl.value
+            SchoolStreamEl.textContent =  inSchoolStreamEl.value
+            SchoolMarksEl.innerHTML = `${inSchoolStartDateEl.value} - ${inSchoolEndDateEl.value} <span class="marks">${inSchoolMarksEl.value} %</span>`
+            PucNameEl.textContent =  inPucNameEl.value
+            PucStreamEl.textContent =  inPucStreamEl.value
+            PucMarksEl.innerHTML = `${inPucStartDateEl.value} - ${inPucEndDateEl.value} <span class="marks">${inPucMarksEl.value} %</span>`
+
+            CollegeNameEl.textContent =  inCollegeNameEl.value
+            CollegeStreamEl .textContent =  inCollegeStreamEl .value
+            CollegeMarksEl.innerHTML = `${inCollegeStartDateEl.value} - ${inCollegeEndDateEl.value} <span class="marks">${inCollegeMarksEl.value} CGPA</span>`
+
+            Certificate1El.textContent =  "1. "+inCertificate1El.value
+            Certificate2El.textContent =  "2. "+inCertificate2El.value
+            if(inCertificate3El.value != '')
+                Certificate3El.textContent =  "3. "+inCertificate3El.value
+            else
+                Certificate3El.textContent =  ''
+            
+                if(inCertificate4El.value != '')
+                Certificate4El.textContent =  "4. "+inCertificate4El.value
+            else
+                Certificate4El.textContent =  ''
+            
+            Interest1El.textContent =  "1. "+inInterest1El.value
+            Interest2El.textContent =  "2. "+inInterest2El.value
+            Interest3El.textContent =  "3. "+inInterest3El.value
+            Interest4El.textContent =  "4. "+inInterest4El.value
+            formEl.style.display = 'none'
+
+            //Checks for Required Fields
+            if (checkMe()){
+                formEl.style.display = 'block'
+                alert("Fill every required fields....")
+            }
+        }
+
+    </script>
+</body>
+</html>
