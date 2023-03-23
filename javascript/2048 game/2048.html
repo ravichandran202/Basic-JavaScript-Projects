@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            text-align: center;
+        }
+
+        hr{
+            width: 400px;
+            margin: 1rem auto;
+            height: 5px;
+            background-color: #000000aa;
+        }
+
+        .name{
+            display: flex;
+            justify-content: center;
+        }
+
+        #name{
+            position: absolute;
+            text-align: center;
+            top: .2rem;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff2020;
+            letter-spacing: 10px;
+            opacity: .4;
+        }
+
+        h1{
+            letter-spacing: 5px;
+            margin-top: 1rem;
+            color: #cd1e03;
+            font-weight: 800;
+        }
+        h2{
+            margin-bottom: 1rem;
+        }
+        #board{
+            width:400px;
+            height: 400px;
+
+            background-color: #cdc1b5;
+            border:6px solid #bbada0;
+
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .tile{
+            width: 95px;
+            height: 95px;
+            font-size: 40px;
+            font-weight: 600;
+            border: 5px solid #bbada0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .x2{
+            background-color: #eee4da;
+            color: #727371;
+        }
+
+        .x4{
+            background-color: #ece0ca;
+            color: #727371;
+        }
+
+        .x8{
+            background-color: #f4b17a;
+            color: white;
+        }
+
+        .x16{
+            background-color: #f59575;
+            color: white;
+        }
+
+        .x32{
+            background-color: #f57c5f;
+            color: white;
+        }
+
+        .x64{
+            background-color: #f65d3b;
+            color: white;
+        }
+
+        .x128{
+            background-color: #edce71;
+            color: white;
+        }
+
+        .x256{
+            background-color: #edcc63;
+            color: white;
+        }
+
+        .x512{
+            background-color: #edc651;
+            color: white;
+        }
+
+        .x1024{
+            background-color: #eec744;
+            color: white;
+            font-size: 35px;
+        }
+
+        .x2048{
+            background-color: #ecc230;
+            color: white;
+            font-size: 35px;
+        }
+
+        .x4096{
+            background-color: #fe3d34;
+            color: white;
+            font-size: 35px;
+        }
+
+        .x8192{
+            background-color: #ff2020;
+            color: white;
+            font-size: 35px;
+        }
+
+        .buttons{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        button{
+            display: none;
+            margin-top: 2rem;
+            padding: 1rem;
+            width: 30%;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-color: #f4e3c9;
+            box-shadow: 0 3px 10px #999;
+            border: none;
+        }
+
+        #btn-pos{
+            position: absolute;
+            bottom: 10rem;
+            width: 100vw;
+        }
+
+        button:hover {
+            background-color: #f6c782;
+        }
+
+        /* .x2:hover,.x4:hover,.x8:hover,.x16:hover,.x32:hover,.x64:hover,.x128:hover,.x128:hover,.x256:hover,.x512:hover,.x1024:hover,.x2048:hover,.x4096:hover,.x8192:hover{
+            background-color: #ff2020;
+        } */
+
+
+
+        @media screen and (max-width:600px) {
+        #board{
+            width:330px;
+            height: 330px;
+            margin: 0 auto;
+            border:2px solid #bbada0;
+        }
+        hr{
+            width: 330px;
+        }
+
+        .tile{
+            width: 80px;
+            height: 80px;
+            border: 3px solid #bbada0;
+        }
+
+        .x2,.x4,.x8,.x16,.x32,.x64,.x128,.x128,.x256,.x512,.x1024,.x2048,.x4096,.x8192{
+            font-size: 30px;
+        }
+
+        button{
+            display:inline;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="name"><span id="name">RAVIZZ</span></div>
+    <h1>2048</h1>
+    <hr>
+    <h2>Score : <span id="score">00</span></h2>
+    <div id="board"></div>
+    <div id="btn-pos">
+        <button id="btn-up" onclick="slideUp()">Up</button><br>
+    <div class="buttons">
+        <button id="btn-left"  onclick="slideLeft()">Left</button>
+        <button id="btn-down"  onclick="slideDown()">Down</button>
+        <button id="btn-right" onclick="slideRight()">Right</button>
+    </div>
+    </div>
+    <script>
+        var board;
+        var score = 0;
+        var rows = 4;
+        var columns = 4;
+
+        window.onload = function(){
+            setGame()
+        }
+
+        function setGame(){
+
+
+            board = [
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0]
+            ]
+
+            // board = [
+            //     [2,2,2,2],
+            //     [2,2,2,2],
+            //     [4,4,8,8],
+            //     [4,4,8,8]
+            // ]
+
+            for(let i=0;i<rows;i++){
+                for(let j=0;j<columns;j++){
+                    let tile = document.createElement('div')
+                    tile.setAttribute('id',`${i}-${j}`)
+                    let num = board[i][j]
+                    updateTile(tile,num)
+                    document.getElementById('board').appendChild(tile)
+                }
+            }
+            setTwo()
+            setTwo()
+        }
+
+
+        function hasEmptyTile(){
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < columns; c++) {
+                  if(board[r][c] == 0){
+                    return true
+                  }
+            }
+          } 
+          return false
+        }
+
+        function setTwo(){
+            document.getElementById('score').innerText = score // updating Score
+            if(!hasEmptyTile()){
+                alert("Game over your score : "+score)
+                location.reload()
+                return
+            }
+
+            let found = false
+            while(!found){
+                let r = Math.floor(Math.random()*rows)
+                let c = Math.floor(Math.random()*columns)
+
+                if(board[r][c]==0){
+                    board[r][c] = 2
+                    let tile = document.getElementById(`${r}-${c}`)
+                    tile.innerText = '2'
+                    tile.classList.add('x2')
+                    found=true
+                }
+
+            }
+        }
+
+        function updateTile(tile,num){
+            tile.innerText = ''
+            tile.classList.value = ''
+            tile.classList.add('tile')
+            if(num>0){
+                if(num<=4096){
+                    tile.classList.add(`x${num}`)
+                } else {
+                    tile.classList.add(`x8192`)
+                }
+               tile.innerText = num
+            }
+        }
+        
+        //Left Button
+        document.addEventListener('keyup',(e)=>{
+            if(e.code == 'ArrowLeft'){
+                slideLeft()
+            }
+
+            if(e.code == 'ArrowRight'){
+                slideRight()
+            }
+
+            if(e.code == 'ArrowUp'){
+                slideUp()
+            }
+
+            if(e.code == 'ArrowDown'){
+                slideDown()
+            }
+            
+        })
+
+        function filterZero(row){
+            return row.filter(num => num!=0)
+        }
+
+        function slide(row){
+            row = filterZero(row)
+            for (let i = 0; i < row.length; i++) {
+                if(row[i]==row[i+1]){
+                    row[i]*=2
+                    row[i+1]=0
+                    score+=row[i]
+                }
+            }
+
+            row = filterZero(row)
+               
+            while(row.length<columns){
+                row.push(0)
+            }
+
+            return row
+        }
+
+        function slideLeft(){
+            setTwo()
+            for (let r = 0; r < rows; r++) {
+                let row = board[r];
+                row = slide(row)
+                board[r] = row
+
+                for(let c=0;c<columns;c++){
+                    let tile = document.getElementById(`${r}-${c}`)
+                    let num = board[r][c]
+                    updateTile(tile,num)
+                }
+            }
+        }
+
+        function slideRight(){
+            setTwo()
+            for (let r = 0; r < rows; r++) {
+                let row = board[r];
+                row.reverse()
+                row = slide(row)
+                row.reverse()
+                board[r] = row
+
+                for(let c=0;c<columns;c++){
+                    let tile = document.getElementById(`${r}-${c}`)
+                    let num = board[r][c]
+                    updateTile(tile,num)
+                }
+            }
+        }
+
+
+        function slideUp(){
+            setTwo()
+            for(let c=0;c<columns;c++){
+                let row = [board[0][c],board[1][c],board[2][c],board[3][c]]
+                row = slide(row)
+                board[0][c] = row[0]
+                board[1][c] = row[1]
+                board[2][c] = row[2]
+                board[3][c] = row[3]
+                for(let r=0;r<rows;r++){
+                    let tile = document.getElementById(`${r}-${c}`)
+                    let num = board[r][c]
+                    updateTile(tile,num)
+                }
+            }
+        }
+
+        function slideDown(){
+            setTwo()
+            for(let c=0;c<columns;c++){
+                let row = [board[0][c],board[1][c],board[2][c],board[3][c]]
+                row.reverse()
+                row = slide(row)
+                row.reverse()
+                board[0][c] = row[0]
+                board[1][c] = row[1]
+                board[2][c] = row[2]
+                board[3][c] = row[3]
+                for(let r=0;r<rows;r++){
+                    let tile = document.getElementById(`${r}-${c}`)
+                    let num = board[r][c]
+                    updateTile(tile,num)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

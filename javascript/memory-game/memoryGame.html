@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+    body{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0.85);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h3{
+        position: absolute;
+        top:0;
+        font-size:3rem;
+        color: #ae3d3d;
+        letter-spacing: 15px;
+    }
+
+    p{
+        color: #fffdfdca;
+        top: 0px;
+        font-weight: 600;
+        font-size:1.5rem;
+        position: absolute;
+    }
+
+    .parent{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+    }
+
+    .tiles{
+        /* min-height: 100vh; */
+        display: flex;
+        flex-wrap: wrap;
+         justify-content: space-between;
+        /* align-items: center;  */
+        gap: 15px   ;
+        width: 750px;
+    }
+
+    .tile{
+        width: 150px;
+        height: 150px;
+        background-color: #111;
+        border: 10px solid #444;
+        border-radius: 30px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+
+    }
+
+    @media screen and (max-width:600px) {
+        .tiles{
+        justify-content: center;
+        gap: 5px ;
+        width: 100vw;
+        width: 450px;
+    }
+    .tile{
+        border: 5px solid #444;
+        width: 85px;
+        height: 85px;
+    }
+    }
+
+    @media screen and (max-width:300px) {
+        .tiles{
+        justify-content: center;
+        gap: 5px ;
+        
+    }
+    .tile{
+        border: 5px solid #444;
+        width: 75px;
+        height: 75px;
+    }
+    }
+
+    </style>
+</head>
+<body>
+    
+    <div class="parent">
+        <h3>RAVIZZ</h3>
+        <p>MEMORY GAME</p>
+        <div class="tiles">
+        </div>
+    </div>
+    <script>
+        const titlesContainer = document.querySelector('.tiles')
+        const colors = ['aqua','red','yellow','blue','green','grey','orange','pink']
+        const colorPickList = [...colors,...colors]
+        const tileCount = colorPickList.length
+        
+
+        let revealedCount = 0
+        let activeTile = null;
+        let awaitingEndOfMove = false;
+
+        function buildTile(color) {
+            const element = document.createElement('div')
+            element.classList.add('tile')
+            element.setAttribute('data-color',color)
+
+            element.addEventListener('click',()=>{
+                if(awaitingEndOfMove){
+                    return
+                }
+                element.style.backgroundColor = color
+                if(!activeTile){
+                    activeTile = element
+                    return
+                }
+
+                if(activeTile.getAttribute('data-color') == color){
+                    awaitingEndOfMove = false
+                    activeTile = null
+                    revealedCount += 2
+
+                    if(revealedCount == tileCount){
+                        alert("YOU WIN!! REFRESH THE PAGE TO RESTART THE GAME")
+                    }
+                    return
+                }
+
+                awaitingEndOfMove = true
+                setTimeout(()=>{
+                    activeTile.style.backgroundColor = null
+                    element.style.backgroundColor = null
+                    awaitingEndOfMove = false
+                    activeTile = null
+                },1000)
+
+            })
+            return element
+        }
+
+        for (let i = 0; i < tileCount; i++) {
+            const randomIndex = Math.floor(Math.random()*colorPickList.length);
+            const color = colorPickList[randomIndex]
+            let tile = buildTile(color)
+            // tile.style.backgroundColor = color
+
+            colorPickList.splice(randomIndex,1)
+            titlesContainer.appendChild(tile)
+        }
+    </script>
+</body>
+</html>
